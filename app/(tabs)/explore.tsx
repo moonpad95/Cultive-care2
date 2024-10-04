@@ -1,102 +1,122 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; // Usa cualquier librería de íconos como Ionicons
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function TabTwoScreen() {
+const AboutScreen: React.FC = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText> library
-          to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.backText}>{"< Back"}</Text>
+        <Text style={styles.headerTitle}>Conoce más sobre Cultive Care</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitleGreen}>Nuestra Marca Cultive Care</Text>
+        <Text style={styles.title}>Nosotros</Text>
+        <Text style={styles.subtitle}>Antecedentes, Misión y Visión</Text>
+      </View>
+
+      {/* Antecedentes */}
+      <TouchableOpacity style={styles.cardGreen}>
+        <Ionicons name="time-outline" size={24} color="black" />
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>ANTECEDENTES</Text>
+          <Text style={styles.cardText}>
+            Cultive Care Technologies es una marca creada por Concept Care Technologies a partir de la necesidad
+            existente de monitorear, predecir y automatizar determinados procesos dentro de los invernaderos,
+            cultivos y otros usos agrónomos.
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      {/* Misión */}
+      <TouchableOpacity style={styles.cardWhite}>
+        <Ionicons name="flag-outline" size={24} color="black" />
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>MISIÓN</Text>
+          <Text style={styles.cardText}>
+            Crear entornos seguros e inteligentes para un monitoreo constante de invernaderos dedicados a los cultivos
+            en las grandes industrias, facilitando herramientas de monitoreo.
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+      {/* Puedes agregar más tarjetas similares para "Visión", etc. */}
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 20,
   },
-  titleContainer: {
+  header: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  backText: {
+    color: '#000',
+    fontSize: 16,
+    marginRight: 10,
+  },
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#7ED957',
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionTitleGreen: {
+    color: '#7ED957',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
+    marginVertical: 5,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+  },
+  cardGreen: {
+    backgroundColor: '#7ED957',
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cardWhite: {
+    backgroundColor: '#fff',
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 15,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cardContent: {
+    marginLeft: 10,
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 5,
+  },
+  cardText: {
+    fontSize: 12,
+    color: '#000',
   },
 });
+
+export default AboutScreen;
